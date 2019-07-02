@@ -1,0 +1,243 @@
+--- 
+layout: post 
+title: Hypothesis Testing 1
+comments: true 
+---
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>'HP'</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="cell code" data-execution_count="31" data-trusted="true">
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># library(ggplot2)</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># library(magrittr)</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># library(gridExtra)</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>graphs &lt;-<span class="st"> </span><span class="kw">new.env</span>()</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>graphs<span class="op">$</span>draw_posterior &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">895</span>, <span class="dv">1039</span>)) {</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    h0 &lt;-<span class="st"> </span><span class="fl">0.5</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    m &lt;-<span class="st"> </span>data[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sum</span>(data)</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    sd &lt;-<span class="st"> </span>m<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>m)<span class="op">/</span><span class="kw">sum</span>(data) <span class="op">%&gt;%</span><span class="st"> </span>sqrt</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    </span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="kw">cat</span>(<span class="kw">c</span>(m,sd))</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    </span>
+<span id="cb1-14"><a href="#cb1-14"></a>    p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(m<span class="dv">-4</span><span class="op">*</span>sd, m<span class="op">+</span><span class="dv">4</span><span class="op">*</span>sd)), <span class="kw">aes</span>(x)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> m, <span class="dt">sd =</span> sd)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> m, <span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&#39;Posterior density&#39;</span>)</span>
+<span id="cb1-18"><a href="#cb1-18"></a>                  </span>
+<span id="cb1-19"><a href="#cb1-19"></a>    p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="fl">0.495</span>, <span class="fl">0.51</span>)), <span class="kw">aes</span>(x)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> m, <span class="dt">sd =</span> sd)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">xlim =</span> <span class="kw">c</span>(h0, <span class="fl">0.510</span>),</span>
+<span id="cb1-22"><a href="#cb1-22"></a>                  <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> m, <span class="dt">sd =</span> sd), <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> h0, <span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="op">+</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="st">    </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.0000003</span>))</span>
+<span id="cb1-25"><a href="#cb1-25"></a>                  </span>
+<span id="cb1-26"><a href="#cb1-26"></a>    <span class="kw">grid.arrange</span>(p1, p2, <span class="dt">nrow =</span> <span class="dv">1</span>)</span>
+<span id="cb1-27"><a href="#cb1-27"></a></span>
+<span id="cb1-28"><a href="#cb1-28"></a>}</span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a>graphs<span class="op">$</span><span class="kw">draw_posterior</span>()</span>
+<span id="cb1-31"><a href="#cb1-31"></a></span>
+<span id="cb1-32"><a href="#cb1-32"></a><span class="co">## https://sebastiansauer.github.io/normal_curve_ggplot2/</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a><span class="co">## https://stackoverflow.com/questions/33244629/filling-under-the-a-curve-with-ggplot-graphs</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a><span class="co">## https://stackoverflow.com/questions/24275918/how-can-you-limit-range-of-stat-function-plots-with-ggplot2</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a><span class="co">## http://environmentalcomputing.net/plotting-with-ggplot-adding-titles-and-axis-names/</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>0.4627715 0.00565324</code></pre>
+</div>
+<div class="output display_data">
+<p><img src="2b1d772646fd930b05c5524bc0328db8bef6b70c.png" /></p>
+</div>
+</div>
+<div class="cell code" data-execution_count="38" data-trusted="true">
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>graphs<span class="op">$</span>draw_sampling &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">895</span>, <span class="dv">1039</span>)) {</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    h0 &lt;-<span class="st"> </span><span class="fl">0.5</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    m &lt;-<span class="st"> </span>data[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sum</span>(data)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    sd &lt;-<span class="st"> </span>m<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>m)<span class="op">/</span><span class="kw">sum</span>(data) <span class="op">%&gt;%</span><span class="st"> </span>sqrt</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    </span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="kw">cat</span>(<span class="kw">c</span>(m,sd))</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    </span>
+<span id="cb3-8"><a href="#cb3-8"></a>    p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(h0<span class="dv">-4</span><span class="op">*</span>sd, h0<span class="op">+</span><span class="dv">4</span><span class="op">*</span>sd)), <span class="kw">aes</span>(x)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> h0, <span class="dt">sd =</span> sd)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> h0, <span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&#39;Sampling distribution under H_0&#39;</span>)</span>
+<span id="cb3-12"><a href="#cb3-12"></a>                  </span>
+<span id="cb3-13"><a href="#cb3-13"></a>    p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="fl">0.450</span>, <span class="fl">0.465</span>)), <span class="kw">aes</span>(x)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> h0, <span class="dt">sd =</span> sd)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="fl">0.450</span>, m),</span>
+<span id="cb3-16"><a href="#cb3-16"></a>                  <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> h0, <span class="dt">sd =</span> sd), <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> m, <span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="op">+</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="st">    </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.0000003</span>))</span>
+<span id="cb3-19"><a href="#cb3-19"></a>                  </span>
+<span id="cb3-20"><a href="#cb3-20"></a>    <span class="kw">grid.arrange</span>(p1, p2, <span class="dt">nrow =</span> <span class="dv">1</span>)</span>
+<span id="cb3-21"><a href="#cb3-21"></a></span>
+<span id="cb3-22"><a href="#cb3-22"></a>}</span>
+<span id="cb3-23"><a href="#cb3-23"></a></span>
+<span id="cb3-24"><a href="#cb3-24"></a>graphs<span class="op">$</span><span class="kw">draw_sampling</span>()</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>0.4627715 0.00565324</code></pre>
+</div>
+<div class="output display_data">
+<p><img src="512ab788afa0fd706186649d040e78c30cd84772.png" /></p>
+</div>
+</div>
+<div class="cell markdown">
+<p>Background ...... Consider a survey over whether a pregnant woman should obtain a legal abortion if the woman wants it for any reason. 895/1934 reported Yes and the rest reported No.</p>
+<p>Let <span class="math inline">\(\theta\)</span> denote the unknown population proportion of respondents who are for the proposition. The question of interest is whether a majority of the population supports the proposition in the survey item.</p>
+<p><em>Frequentist approach.</em> ...... The estimate of <span class="math inline">\(\theta\)</span> is <span class="math inline">\(\hat{\theta}\)</span> = 895/1934 = .46. The data is binomial (independent Bernoulli trials) in Nature. However, given large sample, we can use normal distribution to approximate the frequentist sampling distribution of <span class="math inline">\(\hat{\theta}\)</span>.</p>
+<p>Typically, we test the null hypothesis <span class="math inline">\(H_0\)</span> : <span class="math inline">\(\theta = .5\)</span> against all other alternatives <span class="math inline">\(H_A\)</span> : <span class="math inline">\(\theta \ne .5\)</span>, or against a one-sided alternative <span class="math inline">\(H_B\)</span> : <span class="math inline">\(\theta &gt;.5\)</span>.</p>
+<p>We then ask how unlikely it is that the value of <span class="math inline">\(\hat{\theta}\)</span> actually obtained by centering the sampling distribution of <span class="math inline">\(\hat{\theta}\)</span> at the hypothesized value (under <span class="math inline">\(H_0\)</span>). The standard deviation of the normal sampling distribution (or the standard error of <span class="math inline">\(\hat{\theta}\)</span>) under <span class="math inline">\(H_0\)</span> is</p>
+<p><span class="math display">\[
+se(\hat{\theta}) = \sqrt{\frac{\theta_{H_0}(1 - \theta_{H_0})}{n}} = 
+\sqrt{\frac{0.5 (1 - 0.5)}{1934}} \approx 0.011
+\]</span></p>
+<p>The realized value of <span class="math inline">\(\theta\)</span> is (.5 − .46)/.011 <span class="math inline">\(\approx\)</span> 3.64 standard errors away from the hypothesized value.</p>
+<p>The corresponding proportion (or the p-value) is</p>
+<p>That means, over <strong>repeated</strong> random samplings, about 98.9% of estimates of <span class="math inline">\(\hat{\theta}\)</span> will lie 3.64 or more standard errors away from the hypothesized mean of the sampling distribution. This is an extremely rare event, under a normal distribution.</p>
+<p><span class="math display">\[2\times\int_{3.64}^{\infty}\phi(z)dz=2\times[1-\Phi(3.64)]\approx0.00028\]</span></p>
+<p>where <span class="math inline">\(\phi\)</span> and <span class="math inline">\(\Phi\)</span> are respectively the pdf and cdf of normal distribution. Then, frequentists would conclude that the null hypothesis should be rejected with a p-values for <span class="math inline">\(H_0\)</span> against <span class="math inline">\(H_A\)</span> as .00028, and against <span class="math inline">\(H_B\)</span> as .00014.</p>
+<p><em>Bayesian Approach</em> ...... Basics</p>
+<p>With out loss of generality, assume <span class="math inline">\(\theta\)</span> follows uniform distribution. Then, the posterior has the same shape as the likelihood. With large sample, the likelihood is approximated by a normal density with <span class="math inline">\(p(\theta|y) \approx N(.46,.011)\)</span>. Centered at 0.46, most of the posterior probability mass lies below .5, suggesting that the hypothesis θ &gt;.5 be not well-supported by the data.</p>
+<p><span class="math display">\[
+\text{Pr}(\theta&gt;0.5|y)=\int_{0.5}^{\infty}p(\theta|y)d\theta=\int_{0.5}^{\infty}\phi(\frac{\theta-0.46}{0.011})dz\approx0.00014
+\]</span></p>
+<p>The Bayesian probability relies on the researcher’s beliefs about <span class="math inline">\(\theta\)</span>, updated via application of Bayes Rule, with the posterior distribution being Pr<span class="math inline">\((H_0|y)\)</span>.</p>
+<p>The frequentist p-value is obtained differently and has a different interpretation. It conditions on the null hypothesis that the sampling distribution is <span class="math inline">\(f( \hat{\theta}|H_0)\)</span>. The p-value for <span class="math inline">\(H_0\)</span> against the alternatives are obtained under repeated sampling.</p>
+<p><em>Bayesian Approach</em> ...... Model Choice (forthcoming)</p>
+</div>
+<div class="cell markdown">
+<p>Beta densities are conjugate prior densities with respect to a binomial likelihood. We have</p>
+<ul>
+<li>The Beta Mean: <span class="math inline">\(\frac{\alpha}{(\alpha+\beta)}\)</span></li>
+<li>The Beta Mode: <span class="math inline">\(\frac{\alpha - 1}{(\alpha+\beta - 2)}\)</span></li>
+<li>The Beta Variance: <span class="math inline">\(\frac{\alpha \beta}{(\alpha+\beta)^2 (\alpha+\beta+1)}\)</span></li>
+</ul>
+<p>The Beta Density is <span class="math display">\[
+p(\theta; \alpha, \beta) = \frac{\Gamma(\alpha + \beta)} {\Gamma(\alpha) \Gamma(+ \beta)} \theta^{(\alpha - 1)} (1-\theta)^{(\beta - 1)}
+\]</span> where <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are both greater than 0.</p>
+<p>And we have <span class="math display">\[
+p(\theta; \alpha, \beta) \propto \theta^{(\alpha - 1)} (1-\theta)^{(\beta - 1)}
+\]</span></p>
+<p>Given a binomial likelihood over g successes in N Bernoulli trials, each independent conditional on an unknown success parameter <span class="math inline">\(\theta \in [0, 1]\)</span>,i.e. <span class="math display">\[
+\mathcal{L}(\theta;g,N)=(\begin{array}{c}
+n\\
+r
+\end{array})\theta^{g}(1-\theta)^{N-g}
+\]</span></p>
+<p>then the prior density <span class="math inline">\(p(\theta) = Beta(\alpha, \beta)\)</span> is conjugate with respect to the binomial likelihood, generating the posterior density <span class="math inline">\(p(\theta|g, N) = Beta(\alpha + g, \beta + N − g)\)</span>.</p>
+</div>
+<div class="cell code" data-_execution_state="idle" data-_uuid="051d70d956493feee0c6d64651c6a088724dca2a" data-trusted="true">
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">## Importing packages</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># This R environment comes with all of CRAN and many other helpful packages preinstalled.</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># You can see which packages are installed by checking out the kaggle/rstats docker image: </span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># https://github.com/kaggle/docker-rstats</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="kw">library</span>(tidyverse) <span class="co"># metapackage with lots of helpful functions</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">## Running code</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co"># In a notebook, you can run a single code cell by clicking in the cell and then hitting </span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co"># the blue arrow to the left, or by clicking in the cell and pressing Shift+Enter. In a script, </span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co"># you can run code by highlighting the code you want to run and then clicking the blue arrow</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co"># at the bottom of this window.</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">## Reading in files</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co"># You can access files from datasets you&#39;ve added to this kernel in the &quot;../input/&quot; directory.</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="co"># You can see the files added to this kernel by running the code below. </span></span>
+<span id="cb5-20"><a href="#cb5-20"></a></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;../input&quot;</span>)</span>
+<span id="cb5-22"><a href="#cb5-22"></a></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="co">## Saving data</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a></span>
+<span id="cb5-25"><a href="#cb5-25"></a><span class="co"># If you save any files or images, these will be put in the &quot;output&quot; directory. You </span></span>
+<span id="cb5-26"><a href="#cb5-26"></a><span class="co"># can see the output directory by committing and running your kernel (using the </span></span>
+<span id="cb5-27"><a href="#cb5-27"></a><span class="co"># Commit &amp; Run button) and then checking out the compiled version of your kernel.</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb5-29"><a href="#cb5-29"></a><span class="kw">library</span>(magrittr)</span></code></pre></div>
+</div>
+</body>
+</html>
