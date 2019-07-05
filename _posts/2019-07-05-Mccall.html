@@ -7,13 +7,10 @@ comments: true
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-    <title>Baseline Mccall (1970) Job search model - first draft</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="https://github.com/brbisheng/Econ-Stat-Methods/blob/master/Nonparametric%20principles/ASCIIMathML.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_CHTML"></script>
-    <style type="text/css">
+<title>Baseline Mccall (1970) Job search model - first draft</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<style type="text/css">
     /*!
 *
 * Twitter Bootstrap
@@ -11663,10 +11660,8 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11677,11 +11672,9 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11756,7 +11749,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11802,7 +11795,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-McCall-Model">The McCall Model<a class="anchor-link" href="#The-McCall-Model">&#182;</a></h3><p>Consider an unemployed worker, infinitely lived. At each time $t$, she receives a job offer $w_{t}$.</p>
+<h3 id="The-McCall-Model">The McCall Model<a class="anchor-link" href="#The-McCall-Model">&#194;&#182;</a></h3><p>Consider an unemployed worker, infinitely lived. At each time $t$, she receives a job offer $w_{t}$.</p>
 <p>The job offer is drawn from an $i.i.d.$ distribution with respect to $t$. Let $F(w_{t})$ denote the probability that wage $w_{t}$ is offered.</p>
 <p>Upon receiving $w_{t}$, her decision is :</p>
 <ul>
@@ -11811,18 +11804,16 @@ div#notebook {
 </ul>
 <p>Thus she is in either one of the two states: employed or unemployed</p>
 <p>An unemployed maximizes her lifetime expected utility - the discounted sum of consumption $c_{t}$. In this simplified model, our worker can not save to transfer assets intertemporally, so her consumption is equal to her income $c_{t} = y_{t}$ .</p>
-<p>$$
+$$
 \begin{eqnarray*}
 \Sigma_{t=0}^{\infty} E[\beta\times y_{t}] \tag{1}
 \end{eqnarray*}
-$$
-where</p>
-<p>$$y_{t}=\begin{cases}
+$$<p>where</p>
+$$y_{t}=\begin{cases}
 w &amp; \text{if accept}\\
 b &amp; \text{if reject}
 \end{cases} 
-$$
-Parameters:</p>
+$$<p>Parameters:</p>
 <ul>
 <li>$w_{t}$ the wage, for $t = 1, 2, 3, ...$</li>
 <li>$\beta \in (0,1)$ the discount factor<ul>
@@ -11857,7 +11848,7 @@ Parameters:</p>
 <span class="n">my_beta</span> <span class="o">=</span> <span class="mf">0.99</span>
 
 <span class="k">class</span> <span class="nc">MccallModel</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">my_benefit</span><span class="p">,</span>\
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">my_benefit</span><span class="p">,</span>\
                 <span class="n">beta</span> <span class="o">=</span> <span class="n">my_beta</span><span class="p">,</span>\
                 <span class="n">wage_vals</span> <span class="o">=</span> <span class="n">w_vals</span><span class="p">,</span>\
                 <span class="n">wpdf_vals</span> <span class="o">=</span> <span class="n">wpdf_vals</span><span class="p">):</span>
@@ -11916,21 +11907,18 @@ Parameters:</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We are interested in the case where the worker makes optimal decisions.</p>
 <p>By convention, let $\sigma$ be the worker's decision on whether or not to accept the wage offer $w$.An optimal policy is a function from state to decision.</p>
-<p>$$\sigma(w)=\begin{cases}
+$$\sigma(w)=\begin{cases}
 \frac{w}{1-\beta} &amp; \text{if accept}\\
 b + \beta \int_{0}^{B}V_{\sigma}(w')dF(w') &amp; \text{if reject}
 \end{cases} 
-$$</p>
-<p>Here, $V_{\sigma}(w)$ denotes the expected lifetime utility value of a worker who enters into the current period unemployed and receives a wage offer $w$.</p>
+$$<p>Here, $V_{\sigma}(w)$ denotes the expected lifetime utility value of a worker who enters into the current period unemployed and receives a wage offer $w$.</p>
 <p>More importantly, let $V_{\sigma}(w)$ be the value when the worker makes optimal decisions <em>at the current period and at all future time points</em>.</p>
 <p>Bellman's equation for the unemployed:</p>
-<p>\begin{eqnarray*}
+\begin{eqnarray*}
 V_{\sigma}(w) = max(\frac{w}{1-\beta}, b + \beta E[V_{\sigma}(w')])
-\end{eqnarray*}</p>
-<center>or</center><p>\begin{eqnarray*}
+\end{eqnarray*}<center>or</center>\begin{eqnarray*}
 V_{\sigma}(w) = max(\frac{w}{1-\beta}, b + \beta \int_{0}^{B}V_{\sigma}(w')dF(w'))
-\end{eqnarray*}</p>
-<p>where $B$ is the upperbound for $w_{t}$</p>
+\end{eqnarray*}<p>where $B$ is the upperbound for $w_{t}$</p>
 
 </div>
 </div>
@@ -11939,7 +11927,7 @@ V_{\sigma}(w) = max(\frac{w}{1-\beta}, b + \beta \int_{0}^{B}V_{\sigma}(w')dF(w'
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Economic-Trade-Off-in-Mccall's-model">Economic Trade Off in Mccall's model<a class="anchor-link" href="#Economic-Trade-Off-in-Mccall's-model">&#182;</a></h3><p>Worker's tradeoff: accept the job offer early, or wait until a better offer to come in the future.</p>
+<h3 id="Economic-Trade-Off-in-Mccall's-model">Economic Trade Off in Mccall's model<a class="anchor-link" href="#Economic-Trade-Off-in-Mccall's-model">&#194;&#182;</a></h3><p>Worker's tradeoff: accept the job offer early, or wait until a better offer to come in the future.</p>
 <ul>
 <li>Waiting too long for a good offer is costly, since the future is discounted</li>
 <li>Accepting too early is costly, since better offers might arrive in the future</li>
@@ -11959,46 +11947,38 @@ V_{\sigma}(w) = max(\frac{w}{1-\beta}, b + \beta \int_{0}^{B}V_{\sigma}(w')dF(w'
 <li>this is a reservation wage strategy.</li>
 </ul>
 <p>Reservation wage is given by</p>
-<p>$$
+$$
 \begin{eqnarray*}
 \frac{\bar{w}}{1-\beta} = \bar{V_\sigma} = b + \beta \int_{0}^{B}V_\sigma(w')dF(w')
 \end{eqnarray*}
-$$</p>
-<p>So that $\bar{V_\sigma}$ must be a function of $\bar{w}$, which is determined by other parameters in the model.</p>
+$$<p>So that $\bar{V_\sigma}$ must be a function of $\bar{w}$, which is determined by other parameters in the model.</p>
 <p>for all $w &lt; \bar{w}$,</p>
-<p>$$
+$$
 \begin{eqnarray}
 V_\sigma(w) &amp; = &amp; b + \beta \int_{0}^{B}V_\sigma(w')dF(w') \\
  &amp; = &amp; \frac{\bar{w}}{1-\beta}
 \end{eqnarray}
-$$</p>
-<p>for all $w &gt; \bar{w}$,</p>
-<p>$$
+$$<p>for all $w &gt; \bar{w}$,</p>
+$$
 \begin{eqnarray}
 V_\sigma(w) = \frac{w}{1-\beta}
 \end{eqnarray}
-$$</p>
-<p>So that we obtain:</p>
-<p>\begin{eqnarray*}
+$$<p>So that we obtain:</p>
+\begin{eqnarray*}
 \frac{\bar{w}}{1-\beta} = b +  \beta \int_{0}^{\bar{w}}\frac{\bar{w}}{1-\beta}dF(w') + \beta \int_{\bar{w}}^{B}\frac{w'}{1-\beta}dF(w') \tag{2}
-\end{eqnarray*}</p>
-<p>Since</p>
-<p>\begin{eqnarray*}
+\end{eqnarray*}<p>Since</p>
+\begin{eqnarray*}
 1 = \int_{0}^{B}dF(w') =  \int_{0}^{\bar{w}}dF(w') + \int_{\bar{w}}^{B}dF(w')
-\end{eqnarray*}</p>
-<p>we can rearrange $(2)$ to obtain</p>
-<p>\begin{eqnarray*}
+\end{eqnarray*}<p>we can rearrange $(2)$ to obtain</p>
+\begin{eqnarray*}
 \bar{w}\int_{0}^{\bar{w}}dF(w') - b =  \frac{1}{1-\beta} \int_{\bar{w}}^{B}(\beta w' - \bar{w})dF(w') \tag{3}
-\end{eqnarray*}</p>
-<p>Adding both sides of the following equation to $(3)$</p>
-<p>\begin{eqnarray*}
+\end{eqnarray*}<p>Adding both sides of the following equation to $(3)$</p>
+\begin{eqnarray*}
 \bar{w}\int_{\bar{w}}^{B}dF(w') =  \frac{(1-\beta)\bar{w}}{1-\beta} \int_{\bar{w}}^{B}dF(w')
-\end{eqnarray*}</p>
-<p>we rearrange, we obtain:</p>
-<p>\begin{eqnarray*}
+\end{eqnarray*}<p>we rearrange, we obtain:</p>
+\begin{eqnarray*}
 \bar{w} - b =  \frac{\beta}{1-\beta} \int_{\bar{w}}^{B}(w' - \bar{w})dF(w') \tag{4}
-\end{eqnarray*}</p>
-<ul>
+\end{eqnarray*}<ul>
 <li>Now the left hand side $\bar{w} - b$ is the cost of turning down a wage off $\bar{w}$ to continue searching</li>
 <li>The right hand side $\frac{\beta}{1-\beta} \int_{\bar{w}}^{B}(w' - \bar{w})dF(w')$ represents the expected discounted benefit of turning dow a wage offer $\bar{w}$ to continue searching.</li>
 </ul>
@@ -12054,9 +12034,9 @@ $$</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">140</span><span class="p">)</span>
 <span class="c1"># plt.show()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\bar{w} - b$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">r&#39;$\bar{w} - b$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> \
-        <span class="sa">r</span><span class="s2">&quot;$\frac{\beta}{1-\beta} \int_{\bar{w}}^{B}(w&#39; - \bar{w})dF(w&#39;)$&quot;</span><span class="p">,</span> \
+        <span class="s2">r&quot;$\frac{\beta}{1-\beta} \int_{\bar{w}}^{B}(w&#39; - \bar{w})dF(w&#39;)$&quot;</span><span class="p">,</span> \
         <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">125.4</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="mi">600</span><span class="p">)</span>
@@ -12187,10 +12167,9 @@ $$</p>
 <li>In the following code, we study the shape of value function.</li>
 </ol>
 <p>In the following, we use iteration to solve the model as in the original lecture.As $t$ increases, the contraction mapping theorem leads the worker's strategy to converge her reservation strategy, at which point the value of our value function $V$ is optimal.</p>
-<p>\begin{eqnarray*}
+\begin{eqnarray*}
 V_{\sigma, t+1}(w) = max(\frac{w}{1-\beta}, b + \beta \int_{0}^{B}V_{\sigma, t}(w')dF(w'))
-\end{eqnarray*}</p>
-
+\end{eqnarray*}
 </div>
 </div>
 </div>
@@ -12203,11 +12182,11 @@ V_{\sigma, t+1}(w) = max(\frac{w}{1-\beta}, b + \beta \int_{0}^{B}V_{\sigma, t}(
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Inheritance</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">my_benefit</span><span class="p">,</span>\
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">my_benefit</span><span class="p">,</span>\
                  <span class="n">beta</span> <span class="o">=</span> <span class="n">my_beta</span><span class="p">,</span>\
                  <span class="n">wage_vals</span> <span class="o">=</span> <span class="n">w_vals</span><span class="p">,</span>\
                  <span class="n">wpdf_vals</span> <span class="o">=</span> <span class="n">wpdf_vals</span><span class="p">):</span>
-        <span class="n">MccallModel</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">MccallModel</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         
         <span class="c1"># initialization of v</span>
         
@@ -12375,7 +12354,7 @@ V_{\sigma, t+1}(w) = max(\frac{w}{1-\beta}, b + \beta \int_{0}^{B}V_{\sigma, t}(
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="References:">References:<a class="anchor-link" href="#References:">&#182;</a></h3><ol>
+<h3 id="References:">References:<a class="anchor-link" href="#References:">&#194;&#182;</a></h3><ol>
 <li><a href="https://lectures.quantecon.org/py/mccall_model.html">https://lectures.quantecon.org/py/mccall_model.html</a></li>
 <li>Mit Lecture on Labor Economics: <a href="https://economics.mit.edu/files/10284">https://economics.mit.edu/files/10284</a></li>
 </ol>
@@ -12387,15 +12366,14 @@ V_{\sigma, t+1}(w) = max(\frac{w}{1-\beta}, b + \beta \int_{0}^{B}V_{\sigma, t}(
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Variations-of-the-model.">Variations of the model.<a class="anchor-link" href="#Variations-of-the-model.">&#182;</a></h4><ul>
+<h4 id="Variations-of-the-model.">Variations of the model.<a class="anchor-link" href="#Variations-of-the-model.">&#194;&#182;</a></h4><ul>
 <li>purchasing power, anticipation of inflation </li>
 </ul>
-<p>\begin{equation*}
+\begin{equation*}
 1 +  \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots =
 \prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})},
 \quad\quad \text{for $|q|&lt;1$}.
-\end{equation*}</p>
-
+\end{equation*}
 </div>
 </div>
 </div>
