@@ -3,10 +3,11 @@ title: Bayesian Hypothesis Testing [R]
 comments: true 
 ---
 
+
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>hypothesistesting-sj-c1-r</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>HypothesisTesting_SJ_C1_R</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -13602,10 +13603,10 @@ $$
 E[Loss]=P(\{M_{i}\ne M*\}|\text{y})=1-P(M_{i}|\text{y}).
 $$<p>Thus we can choose the model with highest posterior probability.</p>
 <p>Coming back to the last example.</p>
-<p>With large sample, the likelihood for these data can be approximated by N(0.46,0.011). The posterior is proportional to this likelihood because of our assumption of uniform prior.</p>
+<p>With large sample, the likelihood for these data can be approximated by $N(0.46,0.011)$. The posterior is proportional to this likelihood because of our assumption of uniform prior.</p>
 <p>More precisely, consider the following hypotheses:</p>
 $$
-H_{0}: 0.5\leq\theta\leq1 and H_{1}: 0\leq\theta&lt;0.5, 
+H_{0}: 0.5\leq\theta\leq1 \text{ and } H_{1}: 0\leq\theta&lt;0.5, 
 $$$$
 p_{H_{0}}(\theta)=\begin{cases}
 2 &amp; 0.5\leq\theta\leq1\\
@@ -13616,23 +13617,19 @@ p_{H_{1}}(\theta)=\begin{cases}
 2 &amp; 0\leq\theta&lt;0.5\\
 0 &amp; \text{otherwise}
 \end{cases}
-$$<p>A priori, we are indifferent between P(H<em>{0})=P(H</em>{1}) or P(M<em>{0})=P(M</em>{1}).</p>
-<p>Under H<em>{0}, the marginal likelihood is 
+$$<p>A priori, we are indifferent between $P(H_{0})=P(H_{1})$ or $P(M_{0})=P(M_{1})$.</p>
+<p>Under $H_{0}$, the marginal likelihood is</p>
 $$
-l(\text{y}|H</em>{0})=\int<em>{0.5}^{1}l(\text{y}|H</em>{0},\theta)p(\theta)d\theta=2(\Phi(\frac{1-0.46}{0.011})-\Phi(\frac{0.5-0.46}{0.011}))=0.00028
+l(\text{y}|H_{0})=\int_{0.5}^{1}l(\text{y}|H_{0},\theta)p(\theta)d\theta=2(\Phi(\frac{1-0.46}{0.011})-\Phi(\frac{0.5-0.46}{0.011}))=0.00028
+$$<p>Under $H_{1}$, we have</p>
 $$
-Under H_{1}, we have 
+l(\text{y}|H_{1})=\int_{0}^{0.5}l(\text{y}|H_{1},\theta)p(\theta)d\theta=2(\Phi(\frac{0.5-0.46}{0.011})-\Phi(\frac{0-0.46}{0.011}))=2
+$$<p>Thus,</p>
 $$
-l(\text{y}|H<em>{1})=\int</em>{0}^{0.5}l(\text{y}|H<em>{1},\theta)p(\theta)d\theta=2(\Phi(\frac{0.5-0.46}{0.011})-\Phi(\frac{0-0.46}{0.011}))=2
-$$
-Thus, 
-$$
-P(H</em>{0}|\text{y})=\frac{\frac{1}{2}\times0.00028}{\frac{1}{2}\times0.00028+\frac{1}{2}\times2}=0.00014
-$$
-$$
-P(H<em>{1}|\text{y})=1-P(H</em>{0}|\text{y})=0.99986
-$$
-...</p>
+P(H_{0}|\text{y})=\frac{\frac{1}{2}\times0.00028}{\frac{1}{2}\times0.00028+\frac{1}{2}\times2}=0.00014
+$$$$
+P(H_{1}|\text{y})=1-P(H_{0}|\text{y})=0.99986
+$$<p>...</p>
 <p>$H_{1}$ is more plausible.</p>
 
 </div>
