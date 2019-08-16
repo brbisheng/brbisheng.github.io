@@ -10,14 +10,15 @@ comments: true
 
 ### Basic web pages:
 
-https://jekyllrb.com/docs/github-pages/
+- github pages: 
+1. hierarchical: https://stackoverflow.com/questions/38700154/hierarchical-categories-in-github-pages
+2. https://jekyllrb.com/docs/github-pages/
+3. http://jmcglone.com/guides/github-pages/
+4. https://shuvomoy.github.io/blog/non-technical/2016/01/16/Writing-math-heavy-blogs.html
+5. https://stackoverflow.com/questions/23040619/how-to-link-index-html-to-css-file-for-github-page
+6. https://github.com/github/personal-website
 
-http://jmcglone.com/guides/github-pages/
-
-https://shuvomoy.github.io/blog/non-technical/2016/01/16/Writing-math-heavy-blogs.html
-
-https://stackoverflow.com/questions/23040619/how-to-link-index-html-to-css-file-for-github-page
-
-https://github.com/github/personal-website
-
+- webpages in general:
 Stickies: https://code.tutsplus.com/tutorials/create-a-sticky-note-effect-in-5-easy-steps-with-css3-and-html5--net-13934
+
+
