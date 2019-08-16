@@ -11,7 +11,10 @@ comments: true
 ### Basic web pages:
 
 - github pages: 
-1. hierarchical: https://stackoverflow.com/questions/38700154/hierarchical-categories-in-github-pages
+1. jekyll categories posts:
+    - https://blog.webjeda.com/jekyll-categories/
+    - https://stackoverflow.com/questions/20872861/jekyll-display-posts-by-category
+    - hierarchical: https://stackoverflow.com/questions/38700154/hierarchical-categories-in-github-pages
 2. https://jekyllrb.com/docs/github-pages/
 3. http://jmcglone.com/guides/github-pages/
 4. https://shuvomoy.github.io/blog/non-technical/2016/01/16/Writing-math-heavy-blogs.html
