@@ -5,9 +5,12 @@ title: Sheng's Blog
 	<h1>{{ page.title }}</h1>
 	<ul class="posts">
           <!-- {% for post in site.posts %} -->
-	  {% for post in site.categories %}
-		{% if post contains "Bayesian" %}
-	            <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-		{% endif %}
+	  {% for cat in site.categories %}
+		{% for post in cat %}
+		    <!-- {% if post contains "Bayesian" %}-->
+	                <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+		    <!-- {% if post contains "Bayesian" %}-->
+		    {% endif %}
+		{% endfor %}
 	  {% endfor %}
 	</ul>
