@@ -7,10 +7,9 @@ title: Sheng's Blog
           <!-- {% for post in site.posts %} -->
 	  {% for cat in site.categories %}
 		{% for post in cat %}
-		    <!-- {% if post contains "Bayesian" %}-->
-	                <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-		    <!-- {% if post contains "Bayesian" %}-->
-		    {% endif %}
+	             <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 		{% endfor %}
 	  {% endfor %}
 	</ul>
+
+<!-- {% if post contains "Bayesian" %}-->
