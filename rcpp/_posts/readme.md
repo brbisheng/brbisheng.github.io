@@ -1,10 +1,10 @@
 ---
 title: Pass-by-value vs. pass-by-reference
-categories: rcpp
+categories: ["rcpp", "cpp"]
 ---
 
 ``` c++
-void g(int a, int& r, const int& cr)
+void trial(int a, int& r, const int& cr)
 {
 ++a; // change the local a
 ++r; // change the object referred to by r
