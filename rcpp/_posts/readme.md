@@ -3,7 +3,7 @@ title: Pass-by-value vs. pass-by-reference
 categories: ["rcpp", "cpp"]
 ---
 
-``` c++
+``` c
 void trial(int a, int& r, const int& cr)
 {
 ++a; // change the local a
