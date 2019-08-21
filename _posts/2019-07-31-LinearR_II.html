@@ -11783,7 +11783,7 @@ div#notebook {
 <p>There are at least two ways to derive a Gibbs Sampler, the first is called <strong>The Full conditionals method</strong>, where we focus on the full conditionals for (1) the regression parameters and (2) the error variance parameter.</p>
 <p>For the error variance parameter $\sigma^2$, we have</p>
 $$
-p(\beta,\sigma_{e}^{2}|X,Y)\propto(\sigma_{e}^{2})^{-\frac{N}{2}+1}\text{exp}\{-\frac{1}{2\sigma_{e}^{2}}(y-X\beta)^{T}(y-X\beta)\}
+p(\sigma_{e}^{2}|X,Y)\propto(\sigma_{e}^{2})^{-\frac{N}{2}+1}\text{exp}\{-\frac{1}{2\sigma_{e}^{2}}(y-X\beta)^{T}(y-X\beta)\}
 $$<p>This is an inverse gamma distribution where the shape parameter is $\alpha = \frac{N}{2}$ and the scale parameter is $\beta = \frac{1}{2}(y-X\beta)^{T}(y-X\beta)$</p>
 <p>As for the regression parameters, we have</p>
 $$
