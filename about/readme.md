@@ -1,4 +1,6 @@
-Is there universal truth? What we discover is different patterns, or 'conditions --> results'.
+Is there a universal truth? What we discover are different patterns, or 'conditions --> results'.
+
+Now, are there universal ways of dealing with things? 
 
 I love summarizing methods which can be generalized.
 
