@@ -1,3 +1,5 @@
+Is there universal truth? What we discover is different patterns, or 'conditions --> results'.
+
 I love summarizing methods which can be generalized.
 
 Isn't it exciting that we discover the associations or analogies between seemingly unrelated things?
