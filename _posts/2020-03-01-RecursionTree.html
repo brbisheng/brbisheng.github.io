@@ -51,25 +51,25 @@ comments: true
 <!-- ************************************ -->
 <br> 
 <hr> 
-<h3 align=center>Analyzing Performance of Non-Recursive Routines is (relatively) Easy</h3>
+<h3 align=center>Performance of Non-Recursive Routines</h3>
 <ul>
     <li> Loop: <i>T(n)</i> = $\Theta(n)$  </li>
     <pre>
-    for i in 1 .. n loop
+    for i in 1 .. n, loop
     </pre>
     <li> Loop: <i>T(n)</i> = $\Theta(n^2)$  </li>
     <pre>
-    for i in 1 .. n loop
-        for j in 1 .. n loop
+    for i in 1 .. n, loop
+        for j in 1 .. n, loop
         end loop;
     end loop;
 
-    for i in 1 .. n loop
-        for j in 1 .. i loop
+    for i in 1 .. n, loop
+        for j in 1 .. <mark>i</mark>, loop
         end loop;
     end loop;
     </pre>
-    <li> Loop: <i>T(n)</i> = $\Theta(n^3)$ ... obvious  </li>
+    <li> Loop: <i>T(n)</i> = $\Theta(n^3)$ ... analogous  </li>
 </ul>
 
 <!-- ************************************ -->
