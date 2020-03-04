@@ -52,7 +52,7 @@ comments: true
         <br> 
         <li>  Calculating $T(27)$: </li>
 
-        $\begin{align*}
+        \begin{align*}
         T(27) & = 6\times 27 + 2 \times T(27/3)   \\
               & = 142 + 2 \times T(27/3)   \\
               & = 142 + 2 \times [54 + 2 \times T(9/3)]   \\
@@ -63,7 +63,6 @@ comments: true
               & = 142 + 228   \\
               & = 370
         \end{align*}
-        $
     </ul>
 
 </ul>
@@ -77,7 +76,9 @@ comments: true
     <br> 
     <li>  Bottom level is level $\log_3 27$ = level 3 </li>
     <li>  Number of levels: $ 1 + \log_3 27  = 1 + 3 = 4$ </li>
+    <ul>
         <li>$1 = 3^0$</li>
+    </ul>
     <br> 
     <li>  Sum of level 0: $2^0 \times (6\times 27) = 142$ </li>
     <li>  Sum of level 1: $2^1 \times (6\times 9) = 108$ </li>
@@ -94,48 +95,20 @@ comments: true
 <hr> 
 <h3 align=center>Recursion Tree for $T(n) = aT(\frac{n}{b}) + f(n)$ </h3>
 <ul>
-    <ul>
-        <li> $T(1) = d$ </li>
-    </ul>
-    <li>  Find $T(n)$ </li>
+    <li> $T(1) = d$, Find $T(n)$ </li>
 </ul>
 
+<center>
+T(n)=\begin{cases}
+d & \text{if }n=1\\
+a\times T(n/b)+f(n) & \text{otherwise}
+\end{cases}, where n is a power of b. 
+</center>
 
-<!-- ************************************ -->
-<br> 
-<hr> 
-<h3 align=center>Summing the Values in the Tree </h3>
-<ul>
-    <li> Recurrence Equation: $T(s) = f(s) + a T(s/b)$  </li>
-    <ul>
-        <li> $f(0) = d$ </li>
-    </ul>
-    <br> 
-    <li>  Bottom level is level $\log_b n$  </li>
-    <li>  Number of levels: $ 1 + \log_b n$    </li>
-    <br> 
-    <li>  Sum of all levels except leaves: cost of dividing and joining </li>
-    <ul>
-    <li>  Sum of level 0: $a^0 \times f(\frac{n}{b^0}) $ </li>
-    <li>  Sum of level 1: $a^1 \times f(\frac{n}{b^1}) $ </li>
-    <li>  Sum of level 2: $a^2 \times f(\frac{n}{b^2}) $ </li>
-    <br> 
-    <li>  Sum of level i: $a^i \times f(\frac{n}{b^i}) $ </li>
-    <br> 
-    <li>  Sum of all levels except leaves: $\sum_{i=0}^{\log_b n - 1} a^i f(\frac{n}{b^i})$</li>
-    </ul>
-    <br> 
-    <li>  Sum of bottom level: cost of solving all problems of size 1 </li>
-    <ul>
-        <li>  $d a^{log_b n} = d n^{log_b a}  $ </li>
-    </ul>
+<ul>What is the closed form solution of T(n)?</ul>
 
-    <br> 
-    <li>  Sum of all levels:  </li>
-    $$
-    \sum_{i=0}^{\log_b n - 1} a^i f(\frac{n}{b^i}) + d n^{log_b a} 
-    $$ 
-</ul>
+<br><br><hr><br><br>
+
 
 
 <!-- ************************************ -->
