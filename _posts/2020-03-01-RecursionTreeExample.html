@@ -110,10 +110,17 @@ a\times T(n/b)+f(n) & \text{otherwise}
 </ul>
 
 <br><br>
+
 <!-- ************************************ -->
 <br> 
-<hr> 
-Let $b^{k}=n$, so $\text{log}_{b}n=k$. Using a change of variable, we can re-write the recurrence equation as
+<hr>
+<br>
+<ul>
+    <li></li>
+</ul>
+<ul>
+    <li>Let $b^{k}=n$, so $\text{log}_{b}n=k$. Using a change of variable, we can re-write the recurrence equation as</li>
+</ul>
 
 <center>
 $t(k)=\begin{cases}
@@ -121,8 +128,7 @@ d & \text{if }k=0\\
 a\times t(k-1)+f(b^{k}) & \text{otherwise}
 \end{cases}$
 </center>
-
-Now, 
+ 
 <ul>
     <li>$t(1)=a\times t(0)+f(b)$</li>
     <li>$t(2)=a\times t(1)+f(b^{2})=a^{2}\times t(0)+a^{1}\times f(b)+a^{0}\times f(b^{2})$</li>
@@ -134,40 +140,68 @@ So, in general
 <center>
 $t(k)=a^{k}\times t(0)+\sum_{i=0}^{k-1}a^{i}f(b^{k-i})=a^{k}\times d+\sum_{i=0}^{k-1}a^{i}f(b^{k-i})$
 </center>
-Since $k=\text{log}_{b}n$, we have 
 
-$T(n)=d\times a^{\text{log}_{b}n}+\stackrel[i=0]{\text{log}_{b}n-1}{\sum}a^{i}f(\frac{n}{b^{i}})$
+<ul>
+    <li>Since $k=\text{log}_{b}n$, we have </li>
+</ul>
 
-We could then use mathematical induction to verify this formula.
+<center>
+$T(n)=d\times a^{\text{log}_{b}n}+\sum_{i=0}^{\text{log}_{b}n-1}a^{i}f(\frac{n}{b^{i}})$
+</center>
 
+<ul>
+    <li>We could then use mathematical induction to verify this formula. </li>
+</ul>
+<br>
+<!-- ************************************ -->
+<br> 
+<hr>
+<h3 align=center> An application of the result </h3>
 
+Consider the following recurrence, defined for $n$ which is a power of 4 (for the time of some algorithm.)
+<center>
+$T(n)=$\begin{cases}
+3 & \text{if }n=1\\
+2T(n/4)+4n+1 & \text{otherwise}
+\end{cases}
+</center>
+---> This recurrence equation is equivalent to 
+
+t(k)=\begin{cases}
+3 & \text{if }k=0\\
+2\times t(k-1)+4\times4^{k}+1 & \text{otherwise}
+\end{cases}.
+
+---> Using the formula that we derived above, we could obtain
+
+\begin{array}{ccc}
+T(n) & = & 3\times2^{\text{log}_{4}n}+\stackrel[i=0]{\text{log}_{4}n-1}{\sum}2^{i}\times\left[4\times\frac{n}{4^{i}}+1\right]\\
+ & = & 3\times n^{\frac{1}{2}}+4n\times\stackrel[i=0]{\text{log}_{4}n-1}{\sum}\frac{1}{2^{i}}+\stackrel[i=0]{\text{log}_{4}n-1}{\sum}2^{i}\\
+ & = & 3\times n^{\frac{1}{2}}+4n\times\frac{1-\left(\frac{1}{2}\right)^{\text{log}_{4}n}}{1-\frac{1}{2}}+\frac{1-2^{\text{log}_{4}n}}{1-2}\\
+ & = & 3\times n^{\frac{1}{2}}+8n\times(1-\frac{1}{n^{\frac{1}{2}}})+n^{\frac{1}{2}}-1\\
+ & = & 8n-4n^{\frac{1}{2}}-1
+\end{array}
 <!-- ************************************ -->
 <br> 
 <hr> 
 <h3 align=center>Evaluating the Complexity of the Sum of the Tree Levels </h3>
 <ul>
     <li>  Sum of all levels:
-    $\displaystyle  \sum_{i=0}^{\log_b n - 1} a^i  f(\frac{n}{b^i}) + \Theta(n^{log_b a}) 
+    $\displaystyle  \sum_{i=0}^{\text{log}_b n - 1} a^i  f(\frac{n}{b^i}) + \Theta(n^{log_b a}) 
     $ 
     </li>
     <br> 
-    <li>  Simplify base case of recursion using $\Theta(1)$ instead of $d$ </li>
+    <li>  For the base case of recursion, we simply using $\Theta(1)$ instead of $d$ </li>
     <br> 
-    <li>  When this formula is a polynomial in $n$, we can simplify it by 
-    considering  the power of $n$ in each term: </li>
+    <li>  When this formula is a polynomial in $n$, the degree of the polynomial matters: </li>
     <ul>
-        <li>  Either first or second term can dominate or they can be the same order </li>
+        <li>  Either $f(n)$ or accumulation of $T(n)$ can dominate or they can be the same order </li>
     </ul>
-    <br>
-    <li>  Intuitively: </li>
     <ul>
-        <li>  $\Theta(f(n))$, if the first term (ie the sum of non-leaf levels) dominates (Case 1)</li>
-        <li>  $\Theta(n^{log_b a}\lg n )$, if neither term dominates </li>
-        <li>  $\Theta(n^{log_b a})$, if the second term (ie sum of leaves) dominates (Case 3) </li>
-        <li>  Some restrictions occur </li>
+        <li>  $\Theta(f(n))$, if the sum of non-leaf levels dominates (Case 1)</li>
+        <li>  $\Theta(n^{\text{log}_b a}\lg n )$, if neither term dominates (Case 2) </li>
+        <li>  $\Theta(n^{\text{log}_b a})$, if sum of leaves dominates (Case 3) </li>
     </ul>
-    <br>
-    <li>  These results can be formalized to obtain the General Master Method </li>
 </ul>
 
 
