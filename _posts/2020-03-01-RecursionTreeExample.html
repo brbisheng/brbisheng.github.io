@@ -19,63 +19,29 @@ comments: true
         <h1 >Recursive Closed Forms  </h1>
 
 <!-- ************************************ -->
-<hr> <hr> <h2 > Recursion Tree - Intuition for  Master Method </h2> <hr> <hr> 
+<hr> <hr> <h2 > Recursion Tree </h2> <hr> <hr> 
 <!-- ************************************ -->
 
 
 <!-- ************************************ -->
 <br> 
 <hr> 
-<h3 align=center> Recursion Tree  </h3>
+<h3 align=center> Recursion Tree and Examples </h3>
 <ul>
     <li>  A Recursion Tree is a technique for calculating the amount of work expressed by a recurrence equation   </li>
+    <li>  Consider $T(n) = 2T(\frac{n}{3}) + 6n$ </li>
     <ul>
-        <li> Nice illustration of a recurrence </li>
-        <li>  Gives intuition behind Master Methods </li>
-    </ul>
-    <br>
-    <li>  Each level of the tree shows the <b>non-recursive work</b> for a given parameter
-    value </li>
-    <ul>
-        <li> See diagram </li>
-    </ul>
-    <br>
-    <li>  Write each node with two parts:  </li>
-    <ul>
-        <li> Upper part: $T(s)$ for some $s$ </li>
-        <li>  Lower part: non-recursive part of $T(s)$    </li>
-    </ul>
-    <br>
-    <li>  Relation between parts: Upper part = lower part + upper parts of children </li>
-
-</ul>
-
-
-<!-- ************************************ -->
-<br> 
-<hr> 
-<h3 align=center>Example Recursion Tree </h3>
-<ul>
-    <li>  Consider $T(n) = 2T(\frac{n}{3}) + 5n$ </li>
-    <ul>
-        <li> $T(0) = 7$ </li>
-        <li> These values don't represent a specific algorithm.  
-        They are just chosen for illustration.  </li>
+        <li> $T(0) = 5$ </li>
+        <li> These values are just chosen for illustration.  </li>
     </ul>
 
-    <br>
-    <li>  First rewrite as $T(s) = 5s + 2T(\frac{s}{3})$  </li>
-    <ul>
-        <li> Putting non-recursive term first is (slightly) easier</li>
-        <li>  Using a different variable allows us to focus on calculating $T(n)$ </li>
-    </ul>
     <br>
     <li>  Now calculate $T(27) = T(3^3)$: </li>
     <ul>
-        <li>  Root is $T(27)$: </li>
+        <li>  The Root of the tree is $T(27)$: </li>
         <ul>
             <li> Upper part: $T(27)$ </li>
-            <li>  Lower part: $5s=5\times 27 = 135$ </li>
+            <li> Lower part: $6n=6\times 27 = 162$ </li>
         </ul>
         <br>
         <li>  Children of root: </li>
@@ -87,54 +53,39 @@ comments: true
         <li>  Calculating $T(27)$: </li>
 
         $\begin{align*}
-        T(27) & = 5\times 27 + 2 \times T(27/3)   \\
-              & = 135 + 2 \times T(27/3)   \\
-              & = 135 + 2 \times [45 + 2 \times T(9/3)]   \\
-              & = 135 + 2 \times [45 + 2 \times [15 + 2 \times T(3/3)]]   \\
-              & = 135 + 2 \times [45 + 2 \times [15 + 2 \times 7]]   \\
-              & = 135 + 2 \times [45 + 2 \times 29]   \\
-              & = 135 + 2 \times 103   \\
-              & = 135 + 206   \\
-              & = 341
+        T(27) & = 6\times 27 + 2 \times T(27/3)   \\
+              & = 142 + 2 \times T(27/3)   \\
+              & = 142 + 2 \times [54 + 2 \times T(9/3)]   \\
+              & = 142 + 2 \times [54 + 2 \times [18 + 2 \times T(3/3)]]   \\
+              & = 142 + 2 \times [54 + 2 \times [18 + 2 \times 6]]   \\
+              & = 142 + 2 \times [54 + 2 \times 30]   \\
+              & = 142 + 2 \times 114   \\
+              & = 142 + 228   \\
+              & = 370
         \end{align*}
         $
     </ul>
 
 </ul>
 
-
-<!-- ************************************ -->
-<br> 
-<hr> 
-<h3 align=center>Example Recursion Tree </h3>
-<ul>
-    <li>  Consider $T(s) = 2T(\frac{s}{3}) + 5s = 5s + 2T(\frac{s}{3}) $ </li>
-    <li>  Calculate $T(27)$  </li>
-
-<center>
-              <img src="Diagrams/Recurrence1.gif"></img> 
-</center>
-<li>  Where do 2, 3, log<sub>3</sub>, log<sub>3</sub> 27 come from?  </li>
-</ul>
-
-
 <!-- ************************************ -->
 <br> 
 <hr> 
 <h3 align=center>Tree Properties</h3>
 <ul>
-    <li>  Consider $T(s) = 5s + 2T(\frac{s}{3}) $ </li>
+    <li>  Consider $T(n) = 6n + 2T(\frac{n}{3}) $ </li>
     <br> 
     <li>  Bottom level is level $\log_3 27$ = level 3 </li>
     <li>  Number of levels: $ 1 + \log_3 27  = 1 + 3 = 4$ </li>
+        <li>$1 = 3^0$</li>
     <br> 
-    <li>  Sum of level 0: $2^0 \times (5\times 27) = 135$ </li>
-    <li>  Sum of level 1: $2^1 \times (5\times 9) = 90$ </li>
-    <li>  Sum of level 2: $2^2 \times (5\times 3) = 60$ </li>
+    <li>  Sum of level 0: $2^0 \times (6\times 27) = 142$ </li>
+    <li>  Sum of level 1: $2^1 \times (6\times 9) = 108$ </li>
+    <li>  Sum of level 2: $2^2 \times (6\times 3) = 72$ </li>
     <br> 
-    <li>  Sum of bottom level: $2^{\log_3 27} * 7 = 2^3 \times 7 = 56$ </li>
+    <li>  Sum of bottom level: $2^{\log_3 27} * 6 = 2^3 \times 6 = 48$ </li>
     <br> 
-    <li>  Sum of all levels: $135 + 90 + 60 + 56 = 341$ </li>
+    <li>  Sum of all levels: $142 + 108 + 72 + 48 = 370$ </li>
 </ul>
 
 
@@ -143,15 +94,10 @@ comments: true
 <hr> 
 <h3 align=center>Recursion Tree for $T(n) = aT(\frac{n}{b}) + f(n)$ </h3>
 <ul>
-    <li> Recurrence Equation: $T(s) = f(s) + a T(s/b)$  </li>
     <ul>
         <li> $T(1) = d$ </li>
     </ul>
     <li>  Find $T(n)$ </li>
-
-<center>
-              <img src="Diagrams/Recurrence2.gif"></img> 
-</center>
 </ul>
 
 
@@ -189,21 +135,6 @@ comments: true
     $$
     \sum_{i=0}^{\log_b n - 1} a^i f(\frac{n}{b^i}) + d n^{log_b a} 
     $$ 
-</ul>
-
-
-<!-- ************************************ -->
-<br> 
-<hr> 
-<h3 align=center>Fine Points  </h3>
-<ul>
-    <li>  $a &ge; 1, b &gt; 1, \text{ are constants}$ </li>
-    <br> 
-    <li>  If $n$ is not a power of $b$, then replace $n/b$ by $\lfloor n/b \rfloor$ (or
-    $\lceil n/b \rceil$) </li>
-    <ul>
-        <li> It can be proved that this does not affect the complexity </li>
-    </ul>
 </ul>
 
 
