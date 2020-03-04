@@ -116,9 +116,6 @@ a\times T(n/b)+f(n) & \text{otherwise}
 <hr>
 <br>
 <ul>
-    <li></li>
-</ul>
-<ul>
     <li>Let $b^{k}=n$, so $\text{log}_{b}n=k$. Using a change of variable, we can re-write the recurrence equation as</li>
 </ul>
 
@@ -136,7 +133,7 @@ a\times t(k-1)+f(b^{k}) & \text{otherwise}
     <li>$t(4)=a\times t(3)+f(b^{4})=a^{4}\times t(0)+a^{3}\times f(b)+a^{2}\times f(b^{2})+a^{1}\times f(b^{3})+a^{0}\times f(b^{4})$</li>
 </ul>
 
-So, in general
+---> So, in general
 <center>
 $t(k)=a^{k}\times t(0)+\sum_{i=0}^{k-1}a^{i}f(b^{k-i})=a^{k}\times d+\sum_{i=0}^{k-1}a^{i}f(b^{k-i})$
 </center>
@@ -158,25 +155,25 @@ $T(n)=d\times a^{\text{log}_{b}n}+\sum_{i=0}^{\text{log}_{b}n-1}a^{i}f(\frac{n}{
 <hr>
 <h3 align=center> An application of the result </h3>
 
-Consider the following recurrence, defined for $n$ which is a power of 4 (for the time of some algorithm.)
+---> Consider the following recurrence, defined for $n$ which is a power of 4 (for the time of some algorithm.)
 <center>
-$T(n)=$\begin{cases}
+$T(n)=\begin{cases}
 3 & \text{if }n=1\\
 2T(n/4)+4n+1 & \text{otherwise}
-\end{cases}
+\end{cases}$
 </center>
 ---> This recurrence equation is equivalent to 
 
-t(k)=\begin{cases}
+$t(k)=\begin{cases}
 3 & \text{if }k=0\\
 2\times t(k-1)+4\times4^{k}+1 & \text{otherwise}
-\end{cases}.
+\end{cases}$
 
 ---> Using the formula that we derived above, we could obtain
 
 \begin{array}{ccc}
-T(n) & = & 3\times2^{\text{log}_{4}n}+\stackrel[i=0]{\text{log}_{4}n-1}{\sum}2^{i}\times\left[4\times\frac{n}{4^{i}}+1\right]\\
- & = & 3\times n^{\frac{1}{2}}+4n\times\stackrel[i=0]{\text{log}_{4}n-1}{\sum}\frac{1}{2^{i}}+\stackrel[i=0]{\text{log}_{4}n-1}{\sum}2^{i}\\
+T(n) & = & 3\times2^{\text{log}_{4}n}+\sum_{i=0}^{\text{log}_{4}n-1}2^{i}\times\left[4\times\frac{n}{4^{i}}+1\right]\\
+ & = & 3\times n^{\frac{1}{2}}+4n\times\sum_{i=0}^{\text{log}_{4}n-1}\frac{1}{2^{i}}+\sum_{i=0}^{\text{log}_{4}n-1}2^{i}\\
  & = & 3\times n^{\frac{1}{2}}+4n\times\frac{1-\left(\frac{1}{2}\right)^{\text{log}_{4}n}}{1-\frac{1}{2}}+\frac{1-2^{\text{log}_{4}n}}{1-2}\\
  & = & 3\times n^{\frac{1}{2}}+8n\times(1-\frac{1}{n^{\frac{1}{2}}})+n^{\frac{1}{2}}-1\\
  & = & 8n-4n^{\frac{1}{2}}-1
