@@ -113,9 +113,7 @@ a\times T(n/b)+f(n) & \text{otherwise}
 <!-- ************************************ -->
 <br> 
 <hr> 
-<pre>Let $b^{k}=n$, so $\text{log}_{b}n=k$.</pre>
-
-<pre>Using a change of variable, we can re-write the recurrence equation as </pre>
+Let $b^{k}=n$, so $\text{log}_{b}n=k$. Using a change of variable, we can re-write the recurrence equation as
 
 <center>
 $t(k)=\begin{cases}
@@ -124,17 +122,17 @@ a\times t(k-1)+f(b^{k}) & \text{otherwise}
 \end{cases}$
 </center>
 
-<pre>Now, </pre>
+Now, 
 <ul>
     <li>$t(1)=a\times t(0)+f(b)$</li>
     <li>$t(2)=a\times t(1)+f(b^{2})=a^{2}\times t(0)+a^{1}\times f(b)+a^{0}\times f(b^{2})$</li>
     <li>$t(3)=a\times t(2)+f(b^{3})=a^{3}\times t(0)+a^{2}\times f(b)+a^{1}\times f(b^{2})+a^{0}\times f(b^{3})$</li>
-    <li>$t(4)=a\times t(3)+f(b^{4})=a^{4}\times t(0)+a^{3}\times f(b)+a^{2}\times f(b^{2})+a^{1}\times f(b^{3})+a^{0}\times f(b^{4})</li>
-</li>
+    <li>$t(4)=a\times t(3)+f(b^{4})=a^{4}\times t(0)+a^{3}\times f(b)+a^{2}\times f(b^{2})+a^{1}\times f(b^{3})+a^{0}\times f(b^{4})$</li>
+</ul>
 
 So, in general
 <center>
-$t(k)=a^{k}\times t(0)+\stackrel[i=0]{k-1}{\sum}a^{i}f(b^{k-i})=a^{k}\times d+\stackrel[i=0]{k-1}{\sum}a^{i}f(b^{k-i})$
+$t(k)=a^{k}\times t(0)+\sum_{i=0}^{k-1}a^{i}f(b^{k-i})=a^{k}\times d+\sum_{i=0}^{k-1}a^{i}f(b^{k-i})$
 </center>
 Since $k=\text{log}_{b}n$, we have 
 
