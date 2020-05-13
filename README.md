@@ -8,6 +8,10 @@ comments: true
 ---
 ```
 
+1. customize my theme: /assets/css/style.scss
+
+
+
 ### Basic web pages:
 
 - github pages: 
