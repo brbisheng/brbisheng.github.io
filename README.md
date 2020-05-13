@@ -29,3 +29,17 @@ comments: true
 Stickies: https://code.tutsplus.com/tutorials/create-a-sticky-note-effect-in-5-easy-steps-with-css3-and-html5--net-13934
 
 
+
+#### References.
+	<span>Apart from academic papers, my list of references also include ... </span>
+	<ul>
+		<li>Lynch, Scott M. Introduction to applied Bayesian statistics and estimation for social scientists. Springer Science & Business Media, 2007.</li>
+		<li>Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B., Vehtari, A., & Rubin, D. B. (2013). Bayesian data analysis. Chapman and Hall/CRC.</li>
+		<li>Koop, Gary M. Bayesian econometrics. John Wiley & Sons Inc., 2003.</li>
+                <li>Jackman, Simon. Bayesian analysis for the social sciences. Vol. 846. John Wiley & Sons, 2009.</li>
+		<li>Darwiche, Adnan. Modeling and reasoning with Bayesian networks. Cambridge university press, 2009.</li>
+		<li>Strang, Linear Algebra and Its Applications</li>
+		<li>Strang, Introduction to Linear Algebra</li>
+		<li>Lovric, Anton & Kreyszig, UCSB Math 6A/6B Textbook (recommended!)</li>
+	</ul>
+
