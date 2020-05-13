@@ -23,7 +23,7 @@ comments: true
 3. http://jmcglone.com/guides/github-pages/
 4. https://shuvomoy.github.io/blog/non-technical/2016/01/16/Writing-math-heavy-blogs.html
 5. https://stackoverflow.com/questions/23040619/how-to-link-index-html-to-css-file-for-github-page
-6. https://github.com/github/personal-website
+6. https://code-maven.com/javascript-on-github-pages
 
 - webpages in general:
 Stickies: https://code.tutsplus.com/tutorials/create-a-sticky-note-effect-in-5-easy-steps-with-css3-and-html5--net-13934
