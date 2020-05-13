@@ -3,17 +3,34 @@ layout: default
 title: Assigned to default.html
 ---
 
-<!--   <link type="text/css" rel="stylesheet" href="assets/css/style.scss" />        -->
+<!--   <link type="text/css" rel="stylesheet" href="assets/css/style.css" />        -->
+<head>
+<style></style>
+</head>
+
 <body>
-<div class="blurb">
-	I write mainly on
-	<ul>
-		<li>Math, e.g., differential equations, vector calculus, linear algebra, etc...</li>
-		<li>Econometrics and Statistics, e.g., Bayesian estimations, issues on estimation, etc.</li>
-		<li>Economic models, e.g., Macro job search model, Micro edgeworth box, etc....</li>
-	</ul>
-	Most of the materials were derived from the courses that I teach.
-</div>
+<div class="blurb" style = 'color:red'> </div>
+	
+<script>
+function printSentence(id, sentence, speed) {
+  function p() {
+    var char= sentence.charAt(index);     
+    if(char === '<') index= sentence.indexOf('>',index);
+    document.getElementById(id).innerHTML= sentence.substr(0,index);
+    if(++index === sentence.length){
+      clearInterval(timer);
+    }
+  }
+  
+  var index = 0,
+      timer = setInterval(p, speed);
+} //printSentence
+
+var a = printSentence(
+  'blurb',
+  'Sheng graduated from the <a href="https://www.pantheonsorbonne.fr/ecoles-doctorales/economie-ed-465/doctoral-program-edeem/"> EDEEM Erasmus Programme </a> and obtained his PhD from Paris School of Economics.',
+  20);
+</script>
 </body>	
 	<!-- /.blurb -->
-<!-- I will put some Bayesian material here. <em>A Touch of Evil</em> ... <a href="/about">Read more about it...</a>-->
+<!--  https://stackoverflow.com/questions/29462305/how-to-create-a-typewriter-effect-in-javascript-that-will-take-into-account-html -->
