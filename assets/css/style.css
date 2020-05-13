@@ -1,7 +1,4 @@
----
----
 
-@import "{{ site.theme }}";
 body {
     background-color: black;
     margin: 0;
