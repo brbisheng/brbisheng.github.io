@@ -8,11 +8,14 @@ title: Assigned to default.html
 <style></style>
 </head>
 
-<div id="intro" style = 'color:red'> </div>
+<h1>Sheng BI</h1>
+<div class="blurb" style = 'color:green'> 
+	<p id = 'intro'> </p>
+</div>
 
 <script>
 function printSentence(id, sentence, speed) {
-  function p() {
+  function pp() {
     var char= sentence.charAt(index);     
     if(char === '<') index= sentence.indexOf('>',index);
     document.getElementById(id).innerHTML= sentence.substr(0,index);
@@ -22,7 +25,7 @@ function printSentence(id, sentence, speed) {
   }
   
   var index = 0,
-      timer = setInterval(p, speed);
+      timer = setInterval(pp, speed);
 } //printSentence
 
 var a = printSentence(
