@@ -8,6 +8,10 @@ comments: true
 ---
 ```
 
+TODO
+1. ADD CALENDAR
+	- https://www.thatsoftwaredude.com/content/6396/coding-a-calendar-in-javascript
+	- https://dev.to/knheidorn/making-a-calendar-in-vanilla-javascript-48j8
 1. customize my theme: /assets/css/style.scss
 
 
