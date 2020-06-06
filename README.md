@@ -1,3 +1,5 @@
+The basic structrue contains (1) /_layouts/, (2) /_posts/, (3) index.html, (4)_config.yml.
+
 brbisheng.github.io
 
 The solution is ... I do not use the header at all.. simply put the file in the post folder with a correct name.. that is it.. like
