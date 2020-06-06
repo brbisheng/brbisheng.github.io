@@ -1,0 +1,14 @@
+---
+layout: default
+title: Sheng's Blog
+---
+<!-- The first line is in fact: _layout/default.html-->
+
+	<h1 style = 'text-indent:30px'>{{ page.title }}</h1>
+        <!--page.title refers to "title:Sheng's Blog"-->
+
+	<ul class="posts">
+	  {% for post in site.categories.stocks %}
+	        <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+	  {% endfor %}
+	</ul>
