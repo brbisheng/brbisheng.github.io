@@ -8,7 +8,10 @@ title: Sheng's Blog
         <!--page.title refers to "title:Sheng's Blog"-->
 
 	<ul class="posts">
-	  {% for post in site.categories.stocks or site.categories.philosophy %}
+	  {% for post in site.categories.stocks%}
+	        <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+	  {% endfor %}
+	  {% for post in site.categories.philosophy %}
 	        <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 	  {% endfor %}
 	</ul>
