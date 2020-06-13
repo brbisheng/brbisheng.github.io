@@ -44,8 +44,8 @@ function readTextFile_2(p) {
         } else {
           //alert(response.text())
         }
-    }.then(data => {
-    $('#to_change').html(data);}
+    }).then(data => {
+    $('#to_change').html(data);})
 }
 
 function r2() {readTextFile_2(path1)}
