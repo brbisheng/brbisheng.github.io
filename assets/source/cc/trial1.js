@@ -42,9 +42,10 @@ function readTextFile_2(p) {
         if (!response.ok) {
             throw new Error("HTTP error " + response.status); // Rejects the promise
         } else {
-          alert(response.text())
+          //alert(response.text())
         }
-    });
+    }.then(data => {
+    $('#to_change').html(data);}
 }
 
 function r2() {readTextFile_2(path1)}
