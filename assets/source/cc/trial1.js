@@ -2,23 +2,42 @@ function myFunction() {
   document.getElementById("demo").style.color = "blue";
 }
 
-function readTextFile(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                alert(allText);
-            }
-        }
-    }
-    rawFile.send(null);
-}
+
+///////////////////////////////////////////////////////
+// -------------------- read txt file--------------
 
 var path1 = "p1/yangshen/qijue/2.txt";
-function r() {readTextFile(path1);}
+
+function readTextFile_1(path, callback) {
+    var client = new XMLHttpRequest();
+    client.onreadystatechange = function() {
+        if (client.readyState == 4) {
+            // The request is done; did it work?
+            if (client.status == 200) {
+                // ***Yes, use `xhr.responseText` here***
+                callback(client.responseText);
+            } else {
+                // ***No, tell the callback the call failed***
+                callback(null);
+            }
+        }
+    };
+    client.open("GET", path);
+    client.send();
+}
+
+function handleFileData(fileData) {
+    if (!fileData) {
+        // Show error
+        return('error');
+    }
+    // Use the file data
+}
+
+// Do the request
+function r1() {readTextFile_1(path1, handleFileData);}
+
+
+
+////////////
+//////////////////////////////////////////////////////////
