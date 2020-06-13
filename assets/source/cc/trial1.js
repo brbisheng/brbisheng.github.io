@@ -37,7 +37,17 @@ function handleFileData(fileData) {
 // Do the request
 function r1() {readTextFile_1(path1, handleFileData);}
 
+function readTextFile_2(p) {
+    return fetch(p).then(response => {
+        if (!response.ok) {
+            throw new Error("HTTP error " + response.status); // Rejects the promise
+        } else {
+          alert(response.text())
+        }
+    });
+}
 
+function r2() {readTextFile_2(path1)}
 
 ////////////
 //////////////////////////////////////////////////////////
