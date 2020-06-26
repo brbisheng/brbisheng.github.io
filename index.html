@@ -32,7 +32,7 @@ title: Assigned to default.html
 
 	<p style = "text-indent:30px"><a href="/blog/notes/">Notes(under development)</a></p>
 	
-	<p id = 'trial'> <p>
+	<p id = 'trial'> </p>
 
 </div>
 
@@ -44,6 +44,7 @@ fetch("https://q.stock.sohu.com/cn/600895/cjmx.shtml", {mode:"no-cors"}).then(fu
     var s0 = document.getElementById("trial");
 	s0.innerHTML += myJson;
 	console.log(myJson);
+	alert(myJson);
   });
 </script>
 
