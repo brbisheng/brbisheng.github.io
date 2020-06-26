@@ -10,7 +10,6 @@ title: Assigned to default.html
 
 
 <head>
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 	<style>
 #h1_properties{
 }
@@ -38,7 +37,7 @@ title: Assigned to default.html
 </div>
 
 <script>
-fetch("https://q.stock.sohu.com/cn/600895/cjmx.shtml").then(function(response) {
+fetch("https://q.stock.sohu.com/cn/600895/cjmx.shtml", {mode:"no-cors"}).then(function(response) {
     return response.json();
   })
   .then(function(myJson) {
