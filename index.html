@@ -41,7 +41,7 @@ fetch("https://q.stock.sohu.com/cn/600895/cjmx.shtml", {mode:"no-cors"}).then(fu
     return response.text();
   })
   .then(function(myJson) {
-    var s0 = document.getElementByID("trial");
+    var s0 = document.getElementById("trial");
 	s0.innerHTML += myJson;
 	console.log(myJson);
   });
