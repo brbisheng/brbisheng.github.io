@@ -32,9 +32,20 @@ title: Assigned to default.html
 	<p style = "text-indent:30px" ><a href="/blog/">Posts I wrote in the last years...</a></p>
 
 	<p style = "text-indent:30px"><a href="/blog/notes/">Notes(under development)</a></p>
+	
+	<p id = 'trial'> <p>
 
 </div>
 
+<script>
+fetch("https://q.stock.sohu.com/cn/600895/cjmx.shtml").then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    var s0 = document.getElementByID("trial");
+	s0.innerHTML += myJson;
+  });
+</script>
 
 
 <!--by defautl, it will be looking for "/blog/index.html"-->
