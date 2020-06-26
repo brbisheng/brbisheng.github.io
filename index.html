@@ -37,7 +37,7 @@ title: Assigned to default.html
 </div>
 
 <script>
-fetch("https://q.stock.sohu.com/cn/600895/cjmx.shtml", {mode:"no-cors"}).then(function(response) {
+fetch("https://cors-anywhere.herokuapp.com/https://q.stock.sohu.com/cn/600895/cjmx.shtml", {mode:"no-cors"}).then(function(response) {
     return response.text();
   })
   .then(function(myJson) {
