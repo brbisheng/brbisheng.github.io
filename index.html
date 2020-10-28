@@ -13,11 +13,10 @@ title: Assigned to default.html
 <style>
 
 /* Clear floats after image containers */
-#row1 #dashbaord {
-  content: "";
-  margin:auto; width:80%;
-}
-		
+	#dashbaord > div {
+		content: "";
+		box-shadow: 14px -8px 0px -1px rgba(230,221,142,0.48);
+	}
 </style>
 </head>
 
@@ -48,8 +47,12 @@ title: Assigned to default.html
 </div>
 
 <div class = "dashboard" style = "margin: auto;  width: 80%;"> 
-	<div class = "column1" style = "width: 30%; display: inline-block; padding = 5px;"> Data Analysis </div>
-	<div class = "column2" style = "width: 160%; display: inline-block; padding = 5px;"> Past notes</div>
+	<div id = "subject1" style = "width: 30%; display: inline-block; padding = 5px;"> 
+		Data Analytics with R: ~ 50 hours
+	</div>
+	<div id = "subject2" style = "width: 60%; display: inline-block; padding = 5px;"> 
+		AP Java (U.S., Canada): ~ 150 hours
+	</div>
 </div>
 
 
@@ -71,6 +74,8 @@ fetch("https://cors-anywhere.herokuapp.com/https://q.stock.sohu.com/cn/600895/cj
 
 
 <!--
+*: check the css generator: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients
+*: https://cssgenerator.org/border-css-generator.html
 1. https://stackoverflow.com/questions/2637696/how-to-place-div-side-by-side
 2. https://stackoverflow.com/questions/29462305/how-to-create-a-typewriter-effect-in-javascript-that-will-take-into-account-html
 3. margin - border - padding - content : https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model
