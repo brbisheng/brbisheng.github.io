@@ -12,19 +12,19 @@ title: Assigned to default.html
 <head>
 <style>
 	
-.column1 {
+#column1 {
   float: left;
   width: 30%;
   padding: 5px;
 }
-.column2 {
+#column2 {
   float: left;
   width: 70%;
   padding: 5px;
 }
 
 /* Clear floats after image containers */
-.row1::after {
+#row1::after #dashbaord {
   content: "";
   display: inline-block;
 }
@@ -37,11 +37,7 @@ title: Assigned to default.html
 	<p id = 'intro' style = "text-indent:30px"> 
 	I graduated from the <a href="https://www.pantheonsorbonne.fr/ecoles-doctorales/economie-ed-465/doctoral-program-edeem/">EDEEM Erasmus Programme</a> 
 		and obtained my PhD from <a href="https://www.parisschoolofeconomics.eu/en/">Paris School of Economics</a>.
-	</p>
-	<p id = 'intro' style = "text-indent:30px"> 
-	I love reading about math, statistics, linguistics, philosophy, stock markets, and most importantly, Chinese classics. This site is still under development, if you are interested in some of my notes and would like to discuss with me, please feel free to contact me at linkedin. 
-	</p>
-	
+	</p>	
 	
 	
 	
@@ -62,6 +58,10 @@ title: Assigned to default.html
 	<div class = "column2"> Past notes</div>
 </div>
 
+<div class = "dashboard"> 
+	<div class = "column1"> Data Analysis </div>
+	<div class = "column2"> Past notes</div>
+</div>
 
 
 
@@ -78,7 +78,16 @@ fetch("https://cors-anywhere.herokuapp.com/https://q.stock.sohu.com/cn/600895/cj
 </script>
 
 
-<!--by defautl, it will be looking for "/blog/index.html"-->
+
+
+
+<!--
+1. <p id = 'intro' style = "text-indent:30px"> 
+	I love reading about math, statistics, linguistics, philosophy, stock markets, and most importantly, Chinese classics.  
+	</p>
+2. 
+
+-->
 
 <!--
 <script src="/assets/source/typing.js" type="text/JavaScript"/></script>
