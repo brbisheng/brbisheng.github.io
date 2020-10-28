@@ -13,10 +13,6 @@ title: Assigned to default.html
 <style>
 
 /* Clear floats after image containers */
-	#dashbaord > div {
-		content: "";
-		box-shadow: 14px -8px 0px -1px rgba(230,221,142,0.48);
-	}
 </style>
 </head>
 
@@ -67,6 +63,8 @@ fetch("https://cors-anywhere.herokuapp.com/https://q.stock.sohu.com/cn/600895/cj
 	console.log(myJson);
 	alert(myJson);
   });
+	var d1 = document.querySelector("#subject1");
+	d1.setAttrubute("style", "background-color: green;")
 </script>
 
 
