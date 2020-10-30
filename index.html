@@ -26,15 +26,13 @@ title: Assigned to default.html
 		background-color: #f1f1f1;
 	}
 	.collapsible {
-      		background-color: #777;
+      		background-color: RGBA(255,210,80,0.33);
   		color: white;
   		cursor: pointer;
-  		padding: 18px;
-  		width: 100%;
+  		width: 60%;
   		border: none;
   		text-align: left;
   		outline: none;
-  		font-size: 15px;
 }
 
 </style>
@@ -97,6 +95,7 @@ fetch("https://cors-anywhere.herokuapp.com/https://q.stock.sohu.com/cn/600895/cj
 	console.log(myJson);
 	alert(myJson);
   });
+	/////// toggle a class using .active css style
 	var coll = document.getElementsByClassName("collapsible");
 	var i;
 
@@ -111,6 +110,8 @@ fetch("https://cors-anywhere.herokuapp.com/https://q.stock.sohu.com/cn/600895/cj
 	    }
 	  });
 	}
+	/////////
+	
 </script>
 
 
@@ -125,6 +126,7 @@ fetch("https://cors-anywhere.herokuapp.com/https://q.stock.sohu.com/cn/600895/cj
 3. margin - border - padding - content : https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model
 4. vertical-align: top; : https://stackoverflow.com/questions/31417976/display-inline-block-text-inside-issue
 5. click, fold: https://www.w3schools.com/howto/howto_js_collapsible.asp
+   - check also why there is an ".active" for toggling: https://www.w3schools.com/howto/howto_js_toggle_class.asp 
 -->
 
 <!--
