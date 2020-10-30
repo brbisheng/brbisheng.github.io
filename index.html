@@ -16,6 +16,27 @@ title: Assigned to default.html
 	#subject1 {
 		background-color: green;
 	}
+	.active, .collapsible:hover {
+		background-color: #555;
+	}
+	.content {
+		padding: 0 18px;
+		display: none;
+		overflow: hidden;
+		background-color: #f1f1f1;
+	}
+	.collapsible {
+      		background-color: #777;
+  		color: white;
+  		cursor: pointer;
+  		padding: 18px;
+  		width: 100%;
+  		border: none;
+  		text-align: left;
+  		outline: none;
+  		font-size: 15px;
+}
+
 </style>
 </head>
 
@@ -43,6 +64,16 @@ title: Assigned to default.html
 <div class = "row1" style = "margin: auto; width: 80%;"> 
 	<div class = "column1" style = "width: 30%; display: inline-block; padding = 5px; vertical-align: top;"> Data Analysis </div>
 	<div class = "column2" style = "width: 60%; display: inline-block; padding = 5px; vertical-align: top;"> Past notes</div>
+</div>
+
+<div class = "row2" style = "margin: auto; width: 80%;"> 
+	<div class = "column1" style = "width: 30%; display: inline-block; padding = 5px; vertical-align: top;"> Data Analysis </div>
+	<div class = "column2" style = "width: 30%; display: inline-block; padding = 5px; vertical-align: top;"> 
+	</div>
+	<button type="button" class="collapsible">Open Collapsible</button>
+	<div class="content">
+		<p>Lorem ipsum dolor sit am.</p>
+        </div>
 </div>
 
 <div class = "dashboard" style = "margin: auto;  width: 80%;"> 
