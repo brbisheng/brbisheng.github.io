@@ -1,0 +1,151 @@
+---
+layout: default
+title: Assigned to default.html
+---
+
+<!--   This is the home page that is displayed.       -->
+<!-- when opening brbisheng.github.io, it automatically goes to brbisheng.github.io/index.html-->
+<!-- layout: default == _layout/default.html -->
+
+
+
+<head>
+<style>
+
+/* Clear floats after image containers */
+	#subject1 {
+		background-color: green;
+	}
+	.active, .collapsible:hover {
+		background-color: #555;
+	}
+	.content {
+		padding: 0 18px;
+		display: none;
+		overflow: hidden;
+		background-color: #f1f1f1;
+	}
+	.collapsible {
+      		background-color: RGBA(187,248,116,1);
+		font-family: "Courier New",Courier,monospace;
+  		color: white;
+  		cursor: pointer;
+		padding: 18px;
+  		width: 100%;
+  		border: none;
+  		text-align: left;
+  		outline: none;
+		box-shadow: 10px 13px 20px -5px rgba(0,0,0,0.69);
+	}
+	.column1 {
+		width: 30%; 
+		display: inline-block; 
+		padding = 5px; 
+		vertical-align: top;
+	}
+	.column2 {
+		width: 60%; 
+		display: inline-block; 
+		padding = 5px; 
+		vertical-align: top;
+	}
+	
+
+</style>
+</head>
+
+<div class="blurb" style = 'margin:auto; width:80%;text-align:justify;text-justify:inter-word;'> 
+	<h1 id='h1_properties'>Sheng BI</h1>
+	<p id = 'intro' style = "text-indent:30px"> 
+	I graduated from the <a href="https://www.pantheonsorbonne.fr/ecoles-doctorales/economie-ed-465/doctoral-program-edeem/">EDEEM Erasmus Programme</a> 
+		and obtained my PhD from <a href="https://www.parisschoolofeconomics.eu/en/">Paris School of Economics</a>.
+	</p>	
+	
+	
+	
+	<!--
+	<p style = "text-indent:30px" ><a href="/blog/random/">Random Thoughts and Graphs</a></p>
+
+	<p style = "text-indent:30px" ><a href="/blog/">Posts I wrote in the last years...</a></p>
+
+	<p style = "text-indent:30px"><a href="/blog/notes/">Notes(under development)</a></p>
+	
+	<p id = 'trial'> </p>
+        -->
+
+</div>
+
+<div class = "row1" style = "margin: auto; width: 80%;"> 
+	<div class = "column1"> Data Analysis </div>
+	<div class = "column2"> Past notes</div>
+</div>
+
+<div class = "row2" style = "margin: auto; width: 80%;"> 
+	<div class = "column3" style = "width: 30%; display: inline-block; padding = 5px; vertical-align: top;"> Data Analysis </div>
+	<div class = "column4" style = "width: 60%; display: inline-block; padding = 5px; vertical-align: top;"> 
+		<button type="button" class="collapsible">Open Collapsible</button>
+		<div class="content">
+			<p>Lorem ipsum dolor sit am.</p>
+        	</div>
+	</div>
+</div>
+
+<div class = "dashboard" style = "margin: 30px;  width: 80%;"> 
+	<div id = "subject1" style = "width: 30%; display: inline-block; padding = 5px; vertical-align: top;"> 
+		Data Analytics with R: ~ 50 hours
+	</div>
+	<div id = "subject2" style = "width: 30%; display: inline-block; padding = 5px; vertical-align: top;"> 
+		AP Java (U.S., Canada): ~ 150 hours
+	</div>
+</div>
+
+
+
+<script>
+fetch("https://cors-anywhere.herokuapp.com/https://q.stock.sohu.com/cn/600895/cjmx.shtml").then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    var s0 = document.getElementById("trial");
+	s0.innerHTML += myJson;
+	console.log(myJson);
+	alert(myJson);
+  });
+	/////// toggle a class using .active css style
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+
+	for (i = 0; i < coll.length; i++) {
+	  coll[i].addEventListener("click", function() {
+	    this.classList.toggle("active");
+	    var content = this.nextElementSibling;
+	    if (content.style.display === "block") {
+	      content.style.display = "none";
+	    } else {
+	      content.style.display = "block";
+	    }
+	  });
+	}
+	/////////
+	
+</script>
+
+
+
+
+
+<!--
+*: check the css generator: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients
+*: https://cssgenerator.org/border-css-generator.html
+1. https://stackoverflow.com/questions/2637696/how-to-place-div-side-by-side
+2. https://stackoverflow.com/questions/29462305/how-to-create-a-typewriter-effect-in-javascript-that-will-take-into-account-html
+3. margin - border - padding - content : https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model
+4. vertical-align: top; : https://stackoverflow.com/questions/31417976/display-inline-block-text-inside-issue
+5. click, fold: https://www.w3schools.com/howto/howto_js_collapsible.asp
+   - check also why there is an ".active" for toggling: https://www.w3schools.com/howto/howto_js_toggle_class.asp 
+-->
+
+<!--
+<script src="/assets/source/typing.js" type="text/JavaScript"/></script>
+this works, but let me just make it simple.
+-->	
