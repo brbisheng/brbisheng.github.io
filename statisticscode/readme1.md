@@ -13,3 +13,7 @@ https://stats.idre.ucla.edu/stata/modules/collapsing-data-across-observations/
 
 
 http://people.ku.edu/~chkim/soc910/ conditional and unconditional regressions
+
+
+heteroskedasciticty stata
+http://www3.grips.ac.jp/~yamanota/Lecture_Note_9_Heteroskedasticity
